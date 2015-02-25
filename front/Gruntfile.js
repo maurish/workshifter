@@ -52,7 +52,7 @@ module.exports = function (grunt) {
                 delay: 500
             },
             dev: {
-                path: 'http://localhost:8081'
+                path: 'http://localhost:8081/webpack-dev-server/'
             }
         }
     });
