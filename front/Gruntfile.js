@@ -44,14 +44,13 @@ module.exports = function (grunt) {
                 contentBase: './src/'
             },
             start: {
-                keepAlive: true,
-                webpack: {
-                    debug: true
-                }
-
+                keepAlive: true
             }
         },
         open: {
+            options: {
+                delay: 500
+            },
             dev: {
                 path: 'http://localhost:8081'
             }
