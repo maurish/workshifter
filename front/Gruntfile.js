@@ -32,12 +32,28 @@ module.exports = function (grunt) {
 
                     keepalive: true, // don't finish the grunt task
                     // Use this in combination with the watch option
-              },
-              anotherName: {...}
+              }
+        },
+        "webpack-dev-server": {
+            options: {
+                webpack: { },
+                port: 8081,
+                publicPath: "/webpack"
+            },
+            start: {
+                keepAlive: true,
+                webpack: {
+                    debug: true
+                }
+
+            }
         }
     });
 
     grunt.registerTask('default', [
         'webpack'
+    ]);
+    grunt.registerTask('server', [
+        'webpack-dev-server:start'
     ]);
 };
