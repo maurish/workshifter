@@ -3,21 +3,21 @@ var React = require('react');
 var employees = [
 	{employeeName: "Pauli Perälä"},
 	{employeeName: "Johannes Elmnäinen"}
-	];
+];
 
 var EmployeeList = React.createClass({
 	render: function(){
 
-		var employees = this.props.employees.map(function(employee){
+		var employees = this.props.data.map(function(employee){
 			return(
-				<Employee employeeName={employee.EmployeeName} />
+				<Employee employee={employee} />
 			);
 		});
 
 		return(
 			<div className="employeeList">
 				<h2>Employees of the Month</h2>
-				{employees}
+				<div> {employees}</div>
 			</div>
 		);
 	}
@@ -28,7 +28,7 @@ var Employee = React.createClass({
 		return(
 			<div className="singleEmployee">
 				<h2 className="employeeName">
-					{this.props.employeeName}
+					{this.props.employee.employeeName} is a faggot
 				</h2>
 			</div>
 		);
