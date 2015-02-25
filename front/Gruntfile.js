@@ -2,11 +2,11 @@ module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
     grunt.initConfig({
         webpack: {
-              someName: {
+              dist: {
                     // webpack options
                     entry: "./client/lib/index.js",
                     output: {
-                        path: "asserts/",
+                        path: "assets/",
                         filename: "[hash].js",
                     },
 
@@ -16,6 +16,7 @@ module.exports = function (grunt) {
                         modules: true,
                         reasons: true
                     },
+                    cache: false,
                     // stats: false disables the stats output
 
                     storeStatsTo: "xyz", // writes the status to a variable named xyz
@@ -36,9 +37,11 @@ module.exports = function (grunt) {
         },
         "webpack-dev-server": {
             options: {
-                webpack: { },
+                hot: true,
+                webpack: require('./webpack.config.js'),
                 port: 8081,
-                publicPath: "/webpack"
+                publicPath: '/assets/',
+                contentBase: './src/'
             },
             start: {
                 keepAlive: true,
@@ -47,6 +50,11 @@ module.exports = function (grunt) {
                 }
 
             }
+        },
+        open: {
+            dev: {
+                path: 'http://localhost:8081'
+            }
         }
     });
 
@@ -54,6 +62,7 @@ module.exports = function (grunt) {
         'webpack'
     ]);
     grunt.registerTask('server', [
+        'open',
         'webpack-dev-server:start'
     ]);
 };
