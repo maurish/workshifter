@@ -1,6 +1,6 @@
 
 module.exports = {
-    entry: './src/scripts/index.jsx',
+    entry: './src/index.jsx',
     output: {
         path: __dirname,
         publicPath: '/build/',
@@ -13,5 +13,8 @@ module.exports = {
                 loader: 'babel'
             }
         ]
+    },
+    resolve: {
+        extensions: ['.jsx', '', '.js']
     }
 }
