@@ -9,11 +9,6 @@ export default class EmployeeList extends React.Component {
         super(props)
         this.state = { employees: EmployeeStore.getState() }
         this._onChange = this._onChange.bind(this)
-
-
-        setInterval(() => {
-            console.log(EmployeeStore.getState().map(p => p.nama).join(','))
-        }, 1000)
     }
 
     render() {
@@ -31,8 +26,8 @@ export default class EmployeeList extends React.Component {
         )
     }
 
-    _onChange(data) {
-        this.setState({ employees })
+    _onChange(employees) {
+        this.setState( {employees} )
     }
 
     componentDidMount() {

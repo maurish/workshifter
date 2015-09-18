@@ -11,9 +11,7 @@ class EmployeeActions {
         this.dispatch()
         EmployeeSource.fetch()
             .then((employees) => {
-                var list = new List(employees)
-                console.log(list.map(p => p.name).join(','))
-                this.actions.updateEmployees(list)
+                this.actions.updateEmployees(employees)
             })
             .catch((errorMsg) => {
                 this.actions.employeesFailed(errorMsg)

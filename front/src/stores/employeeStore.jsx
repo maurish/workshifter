@@ -11,7 +11,6 @@ class EmployeeStore {
     }
 
     onUpdateEmployees(employees) {
-        console.log(employees.map(p => p.name).join(','))
         this.setState(employees)
     }
 }
