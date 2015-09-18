@@ -1,10 +1,10 @@
 'use strict'
-import React from 'react'
+import React, { Component } from 'react'
 import Employee from './employee'
 import EmployeeStore from '../stores/employeeStore'
 import EmployeeActions from '../actions/employeeActions'
 
-export default class EmployeeList extends React.Component {
+export default class EmployeeList extends Component {
     constructor(props) {
         super(props)
         this.state = { employees: EmployeeStore.getState() }
