@@ -19,8 +19,14 @@ const router = express.Router()
 router.get('/', (req, res, next) => {
     res.json(
         [
-            {name: "Pauli Perälä"},
-            {name: "Johannes Elmnäinen"}
+            {
+                name: "Pauli Perälä",
+                id  : 1
+            },
+            {
+                name: "Johannes Elmnäinen",
+                id  : 2
+            }
         ]
     )
 })

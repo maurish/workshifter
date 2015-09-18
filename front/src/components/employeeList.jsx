@@ -14,7 +14,7 @@ export default class EmployeeList extends Component {
     render() {
         var employees = this.state.employees.map((employee) => {
             return(
-                <Employee employee={employee} />
+                <Employee employee={employee} key={employee.id} />
             )
         })
 
