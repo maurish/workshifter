@@ -7,7 +7,7 @@ import EmployeeActions from '../actions/employeeActions'
 export default class EmployeeList extends Component {
     constructor(props) {
         super(props)
-        this.state = { employees: EmployeeStore.getState() }
+        this.state = EmployeeStore.getState()
         this._onChange = this._onChange.bind(this)
     }
 
@@ -26,8 +26,8 @@ export default class EmployeeList extends Component {
         )
     }
 
-    _onChange(employees) {
-        this.setState( {employees} )
+    _onChange(data) {
+        this.setState(data)
     }
 
     componentDidMount() {
