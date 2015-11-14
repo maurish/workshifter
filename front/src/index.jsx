@@ -1,7 +1,18 @@
 import React from 'react'
-import EmployeeList from './components/employeeList'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import EmployeeContainer from './components/smart/EmployeeContainer'
+import store from './store'
 
-React.render(
-	<EmployeeList />,
-	document.getElementById('content')
+
+
+const rootElement = (
+    <Provider store={store}>
+        <EmployeeContainer />
+    </Provider>
+)
+
+ReactDOM.render(
+	rootElement,
+	document.getElementById('app')
 )

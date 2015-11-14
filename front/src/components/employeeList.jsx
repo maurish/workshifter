@@ -1,18 +1,11 @@
 'use strict'
 import React, { Component } from 'react'
 import Employee from './employee'
-import EmployeeStore from '../stores/employeeStore'
-import EmployeeActions from '../actions/employeeActions'
 
 export default class EmployeeList extends Component {
-    constructor(props) {
-        super(props)
-        this.state = EmployeeStore.getState()
-        this._onChange = this._onChange.bind(this)
-    }
 
     render() {
-        var employees = this.state.employees.map((employee) => {
+        var employees = this.props.employees.map((employee) => {
             return(
                 <Employee employee={employee} key={employee.id} />
             )
@@ -26,13 +19,5 @@ export default class EmployeeList extends Component {
         )
     }
 
-    _onChange(data) {
-        this.setState(data)
-    }
-
-    componentDidMount() {
-        EmployeeStore.listen(this._onChange)
-        EmployeeActions.fetchEmployees()
-    }
 }
 
