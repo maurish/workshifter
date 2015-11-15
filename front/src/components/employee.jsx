@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 
 export default class Employee extends Component {
     render() {
+        const { employee: { name } } = this.props
         return(
             <div className="singleEmployee">
                 <h2 className="name">
-                    {this.props.employee.name} is awesome
+                    {name} is awesome
                 </h2>
             </div>
         )

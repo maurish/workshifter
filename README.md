@@ -2,11 +2,17 @@
 
 workshifter is a time allocation thing
 
+running dev server 
+### Front
 
-example nginx config:
-    server {
-        listen 80;
-        server_name workshifter.tunk.io;
-        index index.html;
-        root /Users/pperala/Projects/workshifter/front/;
-    }
+```shell
+#!/bin/bash
+npm start
+```
+
+### Server
+
+```shell
+#!/bin/bash
+pm2 start server.js --interpreter=babel-node --watch
+```
