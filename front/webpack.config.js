@@ -28,7 +28,7 @@ export default {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Dashboard',
+            title: 'Workshifter',
             template: 'web/index.html',
             inject: 'body'
         }),
