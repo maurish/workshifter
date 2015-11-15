@@ -17,5 +17,10 @@ export default class EmployeeList extends Component {
         )
     }
 
+    componentDidMount() {
+        const { employeeActions: { fetchEmployees } } = this.props
+        fetchEmployees()
+    }
+
 }
 

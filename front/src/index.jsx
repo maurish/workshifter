@@ -6,11 +6,24 @@ import store from './store'
 
 
 
-const rootElement = (
+const provider = (
     <Provider store={store}>
         <EmployeeContainer />
     </Provider>
 )
+
+let rootElement = provider
+if (__DEVELOPMENT__ && __DEVTOOLS__) {
+    const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react')
+    rootElement = (
+        <div>
+            {provider}
+            <DebugPanel top right bottom>
+                <DevTools store={store} monitor={LogMonitor} />
+            </DebugPanel>
+        </div>
+    )
+}
 
 ReactDOM.render(
 	rootElement,

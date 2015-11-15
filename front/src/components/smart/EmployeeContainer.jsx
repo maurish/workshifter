@@ -1,19 +1,16 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import employeeActions from '../../actions/employeeActions'
+import * as employeeActions from '../../actions/employeeActions'
 import EmployeeList from '../EmployeeList'
 
-function mapStateToProps(state) {
-    return {
-        employees: state.employees.toJS()
-    }
-}
+const mapStateToProps = (state) => ({
+    employees: state.employees.toJS()
+})
 
-function mapDispatchToProps(dispatch) {
-    return {
-
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    employeeActions: bindActionCreators(employeeActions, dispatch)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeeList)
