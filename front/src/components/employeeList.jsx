@@ -5,16 +5,14 @@ import Employee from './employee'
 export default class EmployeeList extends Component {
 
     render() {
-        var employees = this.props.employees.map((employee) => {
-            return(
-                <Employee employee={employee} key={employee.id} />
-            )
-        })
-
+        const { employees } = this.props
         return(
             <div className="employeeList">
                 <h2>Employees of the Month</h2>
-                <div> {employees}</div>
+                <div>{employees.map((employee, i) => 
+                    (<Employee employee={employee} key={i}/>)
+                )}
+                </div>
             </div>
         )
     }

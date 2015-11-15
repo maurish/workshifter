@@ -6,7 +6,7 @@ import EmployeeList from '../EmployeeList'
 
 function mapStateToProps(state) {
     return {
-        employees: state.employees
+        employees: state.employees.toJS()
     }
 }
 
