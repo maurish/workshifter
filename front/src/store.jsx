@@ -10,7 +10,7 @@ if (__DEVELOPMENT__ && __DEVTOOLS__) {
     middleWares.push(devTools())
 }
 
-const createFinalStore = compose.apply(this, middleWares)(createStore)
+const createFinalStore = compose(...middleWares)(createStore)
 const combinedReducer = combineReducers(reducers)
 
 export default createFinalStore(combinedReducer)
