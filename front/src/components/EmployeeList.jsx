@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react'
-import Employee from './employee'
+import Employee from './Employee'
 
 export default class EmployeeList extends Component {
 
@@ -9,7 +9,7 @@ export default class EmployeeList extends Component {
         return(
             <div className="employeeList">
                 <h2>Employees of the Month</h2>
-                <div>{employees.map((employee, i) => 
+                <div>{employees.map((employee, i) =>
                     (<Employee employee={employee} key={i}/>)
                 )}
                 </div>
@@ -23,4 +23,3 @@ export default class EmployeeList extends Component {
     }
 
 }
-
