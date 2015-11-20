@@ -17,12 +17,11 @@ const requestEmployeesFailure = (error) => ({
     payload: error
 })
 
-export function fetchEmployees() {
-    return dispatch => {
+export const fetchEmployees = () => 
+    dispatch =>  {
         dispatch(requestEmployees())
-        fetch(apiUrl)
-        .then(response => response.json())
-        .then(employees => dispatch(receiveEmployees(employees)))
-        .catch(e => dispatch(requestEmployeesFailure(e)))
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(employees => dispatch(receiveEmployees(employees)))
+            .catch(e => dispatch(requestEmployeesFailure(e)))
     }
-}
