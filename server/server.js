@@ -1,34 +1,40 @@
 const   express = require('express')
 ,       app = express()
 ,       bodyParser = require('body-parser')
+,       cors = require('cors')
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-
-// CORS
-app.use( (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
-})
+app.use(cors())
 
 const port = process.env.PORT || 8083
 
 const router = express.Router()
 
-router.get('/', (req, res, next) => {
-    res.json(
-        [
-            {
-                name: "Pauli Perälä",
-                id  : 1
-            },
-            {
-                name: "Johannes Elmnäinen",
-                id  : 2
-            }
-        ]
-    )
+let nextID = 3
+let employees = [
+    {
+        name: "Pauli Perälä",
+        id: 1
+    },
+    {
+        name: "Johannes Elmnäinen",
+        id: 2
+    }
+]
+
+const EMPLOYEES = 'employees'
+router.get('/' + EMPLOYEES, (req, res, next) => {
+    res.json(employees)
+})
+
+router.post('/' + EMPLOYEES, (req, res, next) => {
+    let newEmp = {
+        name: req.body.name,
+        id  : nextID++
+    }
+    employees.push(newEmp)
+    res.json(newEmp)
 })
 
 app.use('/api', router)
