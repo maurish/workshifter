@@ -6,8 +6,8 @@ import * as employeeActions from '../../actions/employeeActions'
 import EmployeePage from '../EmployeePage'
 
 const mapStateToProps = (state) => ({
-    employees: state.employees.toJS(),
-    newEmployeeName: state.newEmployeeName
+    employees: state.employees.get('employees').toJS(),
+    newEmployeeName: state.employees.get('newEmployee')
 })
 
 const mapDispatchToProps = (dispatch) => ({
