@@ -3,7 +3,8 @@ import {
     EMPLOYEES_REQUEST, 
     EMPLOYEES_REQUEST_SUCCESS, 
     EMPLOYEES_REQUEST_ERROR, 
-    CREATE_NEW_EMPLOYEE, 
+    CREATE_NEW_EMPLOYEE,
+    EMPLOYEE_DELETE_SUCCESS,
     NEW_EMPLOYEE_NAME_CHANGED
 } from '../actions/employeeActions'
 
@@ -21,9 +22,15 @@ export default function(state = defaultState, { type, payload }) {
             return state.update('employees', employees =>
                 employees.push(payload)
             )
+        case EMPLOYEE_DELETE_SUCCESS:
+            return state.update('employees', employees => 
+                employees.filter(employee => employee.id !== payload)
+            )
         case NEW_EMPLOYEE_NAME_CHANGED:
             return state.set('newEmployee', payload)
         default:
             return state
     }
 }
+
+

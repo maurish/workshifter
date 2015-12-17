@@ -23,18 +23,23 @@ let employees = [
     }
 ]
 
-const EMPLOYEES = 'employees'
-router.get('/' + EMPLOYEES, (req, res, next) => {
+
+router.get('/employees', (req, res, next) => {
     res.json(employees)
 })
 
-router.post('/' + EMPLOYEES, (req, res, next) => {
+router.post('/employees', (req, res, next) => {
     let newEmp = {
         name: req.body.name,
         id  : nextID++
     }
     employees.push(newEmp)
     res.json(newEmp)
+})
+
+router.delete('/employees/:id', (req, res, next) => {
+    employees = employees.filter( employee => employee.id != req.params.id)
+    res.send(req.params.id)
 })
 
 app.use('/api', router)

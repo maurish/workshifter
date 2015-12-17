@@ -1,2 +1,2 @@
-export const apiUrl = 'http://127.0.0.1:8083/api'
-export const employeesUrl = apiUrl + '/employees'
+import { API_URL } from '../config'
+export const EMPLOYEES_URL = API_URL + '/employees'

@@ -10,7 +10,7 @@ export default class EmployeeList extends Component {
             <div className="employeeList">
                 <h2>Employees of the Month</h2>
                 <div>{employees.map((employee, i) =>
-                    (<Employee employee={employee} key={i}/>)
+                    (<Employee employee={employee} key={i} actions={this.props.employeeActions}/>)
                 )}
                 </div>
             </div>

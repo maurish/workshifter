@@ -10,7 +10,7 @@ export default class EmployeePage extends Component {
         return (
             <div className="employeePage">
                 <h2>Employees</h2>
-                <EmployeeList employees={employees} />
+                <EmployeeList {...this.props}/>
                 <EmployeeAddForm name={newEmployeeName} actions={employeeActions} />
             </div>
             )
