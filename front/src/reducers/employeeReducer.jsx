@@ -13,18 +13,21 @@ const defaultState = Map({employees: List(), newEmployee: ''})
 export default function(state = defaultState, { type, payload }) {
     switch (type) {
         case EMPLOYEES_REQUEST_SUCCESS:
-            return state.update('employees', employees => 
+            return state.update('employees', employees =>
                 employees.concat(payload.map(Map))
             )
         case EMPLOYEES_REQUEST_ERROR:
             return state.set('employees', List())
         case CREATE_NEW_EMPLOYEE:
-            return state.update('employees', employees =>
-                employees.push(payload)
+            return state.update('employees', employees => {
+                return employees.push(new Map(payload))
+                }
             )
         case EMPLOYEE_DELETE_SUCCESS:
-            return state.update('employees', employees => 
-                employees.filter(employee => employee.id !== payload)
+            return state.update('employees', employees =>
+                employees.filter(
+                  employee => employee.get('id') !== payload
+                )
             )
         case NEW_EMPLOYEE_NAME_CHANGED:
             return state.set('newEmployee', payload)
