@@ -23,8 +23,10 @@ export default function(state = defaultState, { type, payload }) {
                 employees.push(payload)
             )
         case EMPLOYEE_DELETE_SUCCESS:
-            return state.update('employees', employees => 
-                employees.filter(employee => employee.id !== payload)
+            return state.update('employees', employees =>
+                employees.filter(
+                  employee => employee.get('id') !== payload
+                )
             )
         case NEW_EMPLOYEE_NAME_CHANGED:
             return state.set('newEmployee', payload)
