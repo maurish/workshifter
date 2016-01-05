@@ -19,6 +19,10 @@ export default {
             {
                 test: /\.jsx$/,
                 loader: 'babel'
+            },
+            {
+                test: /\.less$/,
+                loader: 'style!css!less'
             }
         ]
     },
@@ -34,7 +38,7 @@ export default {
             inject: 'body'
         }),
         new webpack.DefinePlugin({
-            __DEVELOPMENT__: process.env.NODE_ENV === 'development',
+            __DEVELOPMENT__: true, //process.env.NODE_ENV === 'development',
             __DEVTOOLS__: true
         })
     ]

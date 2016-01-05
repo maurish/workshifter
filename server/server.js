@@ -37,8 +37,18 @@ router.post('/employees', (req, res, next) => {
     res.json(newEmp)
 })
 
+router.post('/employees/:id', (req, res, next) => {
+    employees.forEach(function update(employee) {
+        if (employee.id == req.params.id) {
+            employee.name = req.body.name
+            res.send(employee)
+        }
+    })
+    
+})
+
 router.delete('/employees/:id', (req, res, next) => {
-    employees = employees.filter( employee => employee.id != req.params.id)
+    employees = employees.filter(employee => employee.id != req.params.id)
     res.send(req.params.id)
 })
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import EmployeeContainer from './components/smart/EmployeeContainer'
 import store from './store'
+require('./index.less')
 
 
 

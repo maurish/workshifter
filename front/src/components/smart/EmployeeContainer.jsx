@@ -7,7 +7,8 @@ import EmployeePage from '../EmployeePage'
 
 const mapStateToProps = (state) => ({
     employees: state.employees.get('employees').toJS(),
-    newEmployeeName: state.employees.get('newEmployee')
+    newEmployeeName: state.employees.get('newEmployee'),
+    modal: state.employees.get('modal')
 })
 
 const mapDispatchToProps = (dispatch) => ({
