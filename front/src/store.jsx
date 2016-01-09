@@ -6,8 +6,8 @@ import * as reducers from './reducers'
 const middleWares = [applyMiddleware(thunk)]
 
 if (__DEVELOPMENT__ && __DEVTOOLS__) {
-    const { devTools, persistState } = require('redux-devtools');
-    middleWares.push(devTools())
+    const DevTool = require('./DevTools');
+    middleWares.push(DevTool.instrument())
 }
 
 const createFinalStore = compose(...middleWares)(createStore)

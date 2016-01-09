@@ -5,28 +5,22 @@ import EmployeeContainer from './components/smart/EmployeeContainer'
 import store from './store'
 require('./index.less')
 
+const content = <EmployeeContainer />
+let rootElement = content
+if (__DEVELOPMENT__ && __DEVTOOLS__) {
+    const DevTool = require('./DevTools')
+    rootElement = (
+        <div>
+            {content}
+            <DevTool />
+        </div>
+    )
+} 
 
-
-const provider = (
+const app = (
     <Provider store={store}>
-        <EmployeeContainer />
+        {rootElement}
     </Provider>
 )
 
-let rootElement = provider
-if (__DEVELOPMENT__ && __DEVTOOLS__) {
-    const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react')
-    rootElement = (
-        <div>
-            {provider}
-            <DebugPanel top right bottom>
-                <DevTools store={store} monitor={LogMonitor} />
-            </DebugPanel>
-        </div>
-    )
-}
-
-ReactDOM.render(
-	rootElement,
-	document.getElementById('app')
-)
+ReactDOM.render(app, document.getElementById('app'))
