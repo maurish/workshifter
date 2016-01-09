@@ -33,8 +33,7 @@ export default function(state = defaultState, { type, payload }) {
         case CREATE_NEW_EMPLOYEE:
             return state.update('employees', employees => employees.push(new Map(payload)))
         case EMPLOYEE_EDIT:
-            let newState = state.update('modal', modal => modal.set('isOpen', true))
-            return newState.update('modal', modal => modal.set('employee', new Map(payload)))
+            return state.update('modal', modal => modal.set('employee', new Map(payload)).set('isOpen', true))
         case EMPLOYEE_DELETE_SUCCESS:
             return state.update('employees', employees =>
                 employees.filter(employee => employee.get('id') !== payload)
@@ -42,12 +41,17 @@ export default function(state = defaultState, { type, payload }) {
         case NEW_EMPLOYEE_NAME_CHANGED:
             return state.set('newEmployee', payload)
         case MODAL_NAME_CHANGED:
-            return state.updateIn(['modal', 'employee'], employee => employee.set('name', payload))
+            return state.setIn(['modal', 'employee', 'name'], payload)
         case MODAL_CLOSE:
             return state.update('modal', modal => modal.set('isOpen'), false)
         case EMPLOYEE_UPDATE_SUCCESS:
             return state.update('employees', employees =>
-                employees.update(employees.findIndex(employee => employee.get('id') == payload.id), employee => new Map(payload)))
+                employees.update(
+                    employees.findIndex(employee => 
+                        employee.get('id') == payload.id), 
+                        employee => new Map(payload)
+                    )
+                )
         default:
             return state
     }

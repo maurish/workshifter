@@ -92,7 +92,7 @@ export const submitModal = employee =>
                 dispatch(employeeUpdateSuccess(response.data))
             )
 
-export const employeeUpdateSuccess = data => (
+const employeeUpdateSuccess = data => (
     {
         type: EMPLOYEE_UPDATE_SUCCESS,
         payload: data
