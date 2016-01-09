@@ -16,7 +16,7 @@ export default class EmployeeAddForm extends Component {
                     Submit
                 </button>
             </div>
-            )
+        )
     }
 
     handleChange(e) {
