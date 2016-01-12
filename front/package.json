@@ -30,6 +30,7 @@
     "immutable": "^3.7.5",
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
+    "moment": "^2.11.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",

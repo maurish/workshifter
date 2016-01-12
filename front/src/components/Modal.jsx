@@ -10,15 +10,22 @@ export default class Modal extends Component {
                 <div className={classnames('modal', {'modal-closed': !modal.get('isOpen')})}>
                     <div className="modal-close-button" onClick={modalActions.closeModal}>X</div>
                     <h3>Edit employee</h3>
-                    <input  type="text" 
-                            value={modal.getIn(['employee', 'name'], null)} 
-                            onChange={this.handleChange.bind(this)}
-                    />
-                    <button onClick={modalActions.submitModal.bind(null, modal.get('employee'))}>Muokkaa</button>
+                    <form onSubmit={::this.onSubmit}>
+                        <input  type="text" 
+                                value={modal.getIn(['employee', 'name'], null)} 
+                                onChange={::this.handleChange}
+                        />
+                        <button type="submit">Muokkaa</button>
+                    </form>
                 </div>
                 <div className={classnames('modal-background', {'modal-closed': !modal.get('isOpen')})}></div>
             </section>
         )
+    }
+
+    onSubmit() {
+        const {modalActions, modal} = this.props
+        modalActions.submitModal(modal.get('employee'))
     }
 
     handleChange(e) {
