@@ -4,7 +4,6 @@ import ShiftAddForm from './ShiftAddForm'
 export default class Employee extends Component {
     render() {
         const { employee, actions: {deleteEmployee, editEmployee} } = this.props
-        console.log(this.props)
         return(
             <div className="singleEmployee">
                 <h2 className="name">
@@ -20,10 +19,10 @@ export default class Employee extends Component {
                         ))}
                     </ul>
                     <h4>Add new shift</h4>
-                    <ShiftAddForm addNewShift={this.props.actions.addNewShift} employeeId={employee.get('id')} />
+                    <ShiftAddForm addNewShift={this.props.actions.addNewShift} employeeId={employee.get('id')} formKey={'' + employee.get('id')} />
                 </section>
                 <button onClick={deleteEmployee.bind(null, employee.get('id'))}>Delete</button>
-                <button onClick={editEmployee.bind(null, employee)}>Edit</button>               
+                <button onClick={editEmployee.bind(null, employee)}>Edit</button>
             </div>
         )
     }

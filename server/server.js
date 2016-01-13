@@ -66,12 +66,26 @@ router.post('/employees/:id', (req, res, next) => {
             res.send(employee)
         }
     })
-    
+
 })
 
 router.delete('/employees/:id', (req, res, next) => {
     employees = employees.filter(employee => employee.id != req.params.id)
     res.send(req.params.id)
+})
+
+router.post('/employees/:id/shifts', (req, res, next) => {
+    let shift = [{
+        startTime: req.body.startTime,
+        endTime: req.body.endTime
+    }]
+    employees.forEach(employee => {
+        if (employee.id == req.params.id) {
+            console.log(shift)
+            employee.shifts.concat(shift)
+        }
+    })
+    res.send(shift)
 })
 
 app.use('/api', router)

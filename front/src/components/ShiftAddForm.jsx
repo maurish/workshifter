@@ -4,7 +4,6 @@ import {reduxForm} from 'redux-form'
 class ShiftAddForm extends Component {
     render() {
         const { fields: {startTime, endTime} } = this.props
-        console.log(this.props)
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <label>
@@ -16,7 +15,7 @@ class ShiftAddForm extends Component {
                     End time: <br />
                     <input type="text" {...endTime} />
                 </label> <br />
-                <button onClick={this.handleSubmit.bind(this)}>Submit</button> 
+                <button onClick={this.handleSubmit.bind(this)}>Submit</button>
             </form>
        )
     }
@@ -24,7 +23,7 @@ class ShiftAddForm extends Component {
     handleSubmit(e) {
         const { employeeId, addNewShift, fields: {startTime, endTime} } = this.props
         e.preventDefault()
-        addNewShift(employeeId, startTime, endTime)
+        addNewShift(employeeId, startTime.value, endTime.value)
     }
 }
 
