@@ -1,7 +1,9 @@
-const   express = require('express')
-,       app = express()
-,       bodyParser = require('body-parser')
-,       cors = require('cors')
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import moment from 'moment'
+
+const app = express()
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -15,11 +17,31 @@ let nextID = 3
 let employees = [
     {
         name: "Pauli Perälä",
-        id: 1
+        id: 1,
+        shifts: [
+            {
+                startTime: '13.01.2016 08:00',
+                endTime: '13.01.2016 16:00'
+            },
+            {
+                startTime: '14.01.2016 18:00',
+                endTime: '15.01.2016 04:00'
+            }
+        ]
     },
     {
         name: "Johannes Elmnäinen",
-        id: 2
+        id: 2,
+        shifts: [
+            {
+                startTime: '13.01.2016 10:00',
+                endTime: '13.01.2016 18:00'
+            },
+            {
+                startTime: '14.01.2016 14:00',
+                endTime: '15.01.2016 22:00'
+            }
+        ]
     }
 ]
 

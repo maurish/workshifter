@@ -10,10 +10,10 @@ export default class Modal extends Component {
                 <div className={classnames('modal', {'modal-closed': !modal.get('isOpen')})}>
                     <div className="modal-close-button" onClick={modalActions.closeModal}>X</div>
                     <h3>Edit employee</h3>
-                    <form onSubmit={::this.onSubmit}>
+                    <form onSubmit={this.onSubmit.bind(this)}>
                         <input  type="text" 
                                 value={modal.getIn(['employee', 'name'], null)} 
-                                onChange={::this.handleChange}
+                                onChange={this.handleChange.bind(this)}
                         />
                         <button type="submit">Muokkaa</button>
                     </form>

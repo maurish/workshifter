@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { EMPLOYEES_URL } from '../config'
+
+import * as EMPLOYEE_API from '../constants'
 
 export const MODAL_CLOSE                = 'MODAL_CLOSE'
 export const MODAL_NAME_CHANGED         = 'MODAL_NAME_CHANGED'
@@ -14,7 +15,7 @@ export const changeModalValue = name => (
 
 export const submitModal = employee => 
     dispatch => 
-        axios.post(`${EMPLOYEES_URL}/${employee.get('id')}`, employee.toJS())
+        axios.post(`${EMPLOYEES_API.URL}/${employee.get('id')}`, employee.toJS())
             .then(response => 
                 dispatch(employeeUpdateSuccess(response.data))
             )

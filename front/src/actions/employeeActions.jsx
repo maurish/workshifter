@@ -1,5 +1,6 @@
-import { EMPLOYEES_URL } from '../config'
 import axios from 'axios'
+
+import * as EMPLOYEE_API from '../constants'
 
 export const EMPLOYEES_REQUEST          = 'EMPLOYEES_REQUEST'
 export const EMPLOYEES_REQUEST_SUCCESS  = 'EMPLOYEES_REQUEST_SUCCESS'
@@ -29,7 +30,7 @@ const addNewEmployee = (employee) => ({
 export const fetchEmployees = () => 
     dispatch =>  {
         dispatch(requestEmployees())
-            fetch(EMPLOYEES_URL)
+        fetch(EMPLOYEE_API.URL)
             .then(response => response.json())
             .then(employees => dispatch(receiveEmployees(employees)))
             .catch(e => console.log(e))
@@ -47,7 +48,7 @@ const deleteEmployeeSuccess = (employee) => ({
 
 export const createNewEmployee = (name) => 
     dispatch => {
-        fetch(EMPLOYEES_URL, 
+        fetch(EMPLOYEE_API.URL, 
             {
                 'method': 'POST', 
                 'headers': {
@@ -71,5 +72,10 @@ export const editEmployee = employee => (
 
 export const deleteEmployee = id => 
     dispatch => 
-        axios.delete(`${EMPLOYEES_URL}/${id}`)
+        axios.delete(`${EMPLOYEE_API.URL}/${id}`)
             .then(response => dispatch(deleteEmployeeSuccess(response.data)))
+
+export const addNewShift = (id, start, end) =>
+    dispatch =>
+        axios.post(`${EMPLOYEE_API.URL}/${id + EMPLOYEE_API.URL.SHIFTS}`)
+        .then(response => console.log(response.data))

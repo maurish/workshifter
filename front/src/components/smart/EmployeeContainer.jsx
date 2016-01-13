@@ -7,7 +7,7 @@ import * as modalActions from '../../actions/modalActions'
 import EmployeePage from '../EmployeePage'
 
 const mapStateToProps = (state) => ({
-    employees: state.employees.get('employees').toJS(),
+    employees: state.employees.get('employees'),
     newEmployeeName: state.employees.get('newEmployee'),
     modal: state.modal
 })

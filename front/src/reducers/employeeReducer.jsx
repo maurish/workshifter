@@ -1,4 +1,4 @@
-import { Map, List } from 'immutable'
+import Immutable, { Map, List } from 'immutable'
 import * as employeeActions from '../actions/employeeActions'
 import * as modalActions from '../actions/modalActions'
 
@@ -10,8 +10,8 @@ const defaultState = Map({
 export default function(state = defaultState, { type, payload }) {
     switch (type) {
         case employeeActions.EMPLOYEES_REQUEST_SUCCESS:
-            return state.update('employees', employees =>
-                employees.concat(payload.map(Map))
+            return state.update('employees', employees => 
+                employees.concat(Immutable.fromJS(payload))
             )
         case employeeActions.EMPLOYEES_REQUEST_ERROR:
             return state.set('employees', List())
