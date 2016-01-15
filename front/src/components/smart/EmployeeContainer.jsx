@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as employeeActions from '../../actions/employeeActions'
-import * as modalActions from '../../actions/modalActions'
+import * as employeeModalActions from '../../actions/employeeModalActions'
 import EmployeePage from '../EmployeePage'
 
 const mapStateToProps = (state) => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     employeeActions: bindActionCreators(employeeActions, dispatch),
-    modalActions: bindActionCreators(modalActions, dispatch)
+    employeeModalActions: bindActionCreators(employeeModalActions, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeePage)

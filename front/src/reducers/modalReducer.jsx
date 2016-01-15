@@ -1,12 +1,12 @@
 import { Map } from 'immutable'
 
-import * as modalActions from '../actions/modalActions'
+import * as employeeModalActions from '../actions/employeeModalActions'
 import * as employeeActions from '../actions/employeeActions'
 
 const defaultState = Map({
-    isOpen: false, 
+    isOpen: false,
     employee: Map({
-        id: null, 
+        id: null,
         name: ''
     })
 })
@@ -15,9 +15,9 @@ export default (state = defaultState, {type, payload}) => {
     switch (type) {
         case employeeActions.EMPLOYEE_EDIT:
             return state.set('employee', new Map(payload)).set('isOpen', true)
-        case modalActions.MODAL_NAME_CHANGED:    
+        case employeeModalActions.MODAL_NAME_CHANGED:
             return state.setIn(['employee', 'name'], payload)
-        case modalActions.MODAL_CLOSE:
+        case employeeModalActions.MODAL_CLOSE:
             return state.set('isOpen', false)
         default:
             return state

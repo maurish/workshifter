@@ -21,13 +21,16 @@ let employees = [
         shifts: [
             {
                 startTime: '13.01.2016 08:00',
-                endTime: '13.01.2016 16:00'
+                endTime: '13.01.2016 16:00',
+                id: 0
             },
             {
                 startTime: '14.01.2016 18:00',
-                endTime: '15.01.2016 04:00'
+                endTime: '15.01.2016 04:00',
+                id: 1
             }
-        ]
+        ],
+        nextShiftID: 2
     },
     {
         name: "Johannes Elmnäinen",
@@ -35,13 +38,16 @@ let employees = [
         shifts: [
             {
                 startTime: '13.01.2016 10:00',
-                endTime: '13.01.2016 18:00'
+                endTime: '13.01.2016 18:00',
+                id: 0
             },
             {
                 startTime: '14.01.2016 14:00',
-                endTime: '15.01.2016 22:00'
+                endTime: '15.01.2016 22:00',
+                id: 1
             }
-        ]
+        ],
+        nextShiftID: 2
     }
 ]
 
@@ -63,7 +69,7 @@ router.post('/employees/:id', (req, res, next) => {
     employees.forEach(function update(employee) {
         if (employee.id == req.params.id) {
             employee.name = req.body.name
-            res.send(employee)
+            res.json(employee)
         }
     })
 
@@ -75,17 +81,33 @@ router.delete('/employees/:id', (req, res, next) => {
 })
 
 router.post('/employees/:id/shifts', (req, res, next) => {
-    let shift = [{
-        startTime: req.body.startTime,
-        endTime: req.body.endTime
-    }]
     employees.forEach(employee => {
         if (employee.id == req.params.id) {
-            console.log(shift)
-            employee.shifts.concat(shift)
+            let data = {
+                id: req.params.id,
+                shift: {
+                    startTime: req.body.startTime,
+                    endTime: req.body.endTime,
+                    id: employee.nextShiftID++
+                }
+            }
+            employee.shifts.push(data.shift)
         }
     })
-    res.send(shift)
+    res.send(data)
+})
+
+router.delete('/employees/:employeeID/shifts/:shiftID', (req, res, next) => {
+    employees.forEach(employee => {
+        if (employee.id == req.params.employeeID) {
+            employee.shifts = employee.shifts.filter(shift => shift.id != req.params.shiftID)
+            let response = {
+                employeeID: req.params.employeeID,
+                shiftID: req.params.shiftID
+            }
+            res.send(response)
+        }
+    })
 })
 
 app.use('/api', router)

@@ -10,6 +10,7 @@ export const CREATE_NEW_EMPLOYEE        = 'CREATE_NEW_EMPLOYEE'
 export const EMPLOYEE_DELETE_SUCCESS    = 'EMPLOYEE_DELETE_SUCCESS'
 export const EMPLOYEE_EDIT              = 'EMPLOYEE_EDIT'
 export const ADD_NEW_SHIFT_SUCCESS      = 'ADD_NEW_SHIFT_SUCCESS'
+export const REMOVE_SHIFT_SUCCESS       = 'REMOVE_SHIFT_SUCCESS'
 
 const requestEmployees = () => ({type: EMPLOYEES_REQUEST})
 
@@ -79,9 +80,19 @@ export const addNewShift = (id, start, end) =>
         axios.post(`${EMPLOYEE_API.URL}/${id + EMPLOYEE_API.SHIFTS}`, {
             startTime: start,
             endTime: end
-        }).then(response => dispatch(console.log(reponse.data)))
+        }).then(response => dispatch(addNewShiftSuccess(response.data)))
 
 const addNewShiftSuccess = shift => ({
         type: ADD_NEW_SHIFT_SUCCESS,
         payload: shift
+})
+
+export const removeShift = (shiftID, employeeID) =>
+    dispatch =>
+        axios.delete(`${EMPLOYEE_API.URL}/${employeeID + EMPLOYEE_API.SHIFTS}/${shiftID}`)
+            .then(response => dispatch(removeShiftSuccess(response.data)))
+
+const removeShiftSuccess = shiftID => ({
+        type: REMOVE_SHIFT_SUCCESS,
+        payload: shiftID
 })

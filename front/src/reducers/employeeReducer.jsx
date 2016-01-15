@@ -1,6 +1,6 @@
 import Immutable, { Map, List } from 'immutable'
 import * as employeeActions from '../actions/employeeActions'
-import * as modalActions from '../actions/modalActions'
+import * as employeeModalActions from '../actions/employeeModalActions'
 
 const defaultState = Map({
     employees: List(),
@@ -23,16 +23,21 @@ export default function(state = defaultState, { type, payload }) {
             )
         case employeeActions.NEW_EMPLOYEE_NAME_CHANGED:
             return state.set('newEmployee', payload)
-        case modalActions.EMPLOYEE_UPDATE_SUCCESS:
-            return state.update('employees', employees =>
-                employees.update(
-                    employees.findIndex(employee =>
-                        employee.get('id') == payload.id),
-                        employee => new Map(payload)
-                    )
-                )
-        case employeeActions.ADD_NEW_SHIFT_SUCCESS:
+        case employeeModalActions.EMPLOYEE_UPDATE_SUCCESS:
             console.log(payload)
+            let i = state.get('employees').findIndex(employee => employee.get('id') == payload.id)
+            return state.setIn(['employees', i], Immutable.fromJS(payload))
+        case employeeActions.ADD_NEW_SHIFT_SUCCESS:
+            return state.updateIn(
+                ['employees', state.get('employees').findIndex(employee => employee.get('id') == payload.id), 'shifts'],
+                shifts => shifts.push(new Map(payload.shift)))
+        case employeeActions.REMOVE_SHIFT_SUCCESS:
+            return state.updateIn(
+                ['employees', state.get('employees').findIndex(employee => employee.get('id') == payload.employeeID), 'shifts'],
+                shifts => shifts.filter(shift => shift.get('id') != payload.shiftID)
+            )
+        case employeeActions.EMPLOYEE_SHIFTS_EDIT_SUCCESS:
+            console.log('success!')
             return state
         default:
             return state
