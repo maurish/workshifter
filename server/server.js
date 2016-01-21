@@ -92,9 +92,9 @@ router.post('/employees/:id/shifts', (req, res, next) => {
                 }
             }
             employee.shifts.push(data.shift)
+            res.send(data)
         }
     })
-    res.send(data)
 })
 
 router.delete('/employees/:employeeID/shifts/:shiftID', (req, res, next) => {
