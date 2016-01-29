@@ -29,7 +29,7 @@ export default function(state = defaultState, { type, payload }) {
         case employeeActions.ADD_NEW_SHIFT_SUCCESS:
             return state.updateIn(
                 ['employees', state.get('employees').findIndex(employee => employee.get('id') == payload.id), 'shifts'],
-                shifts => shifts.push(new Map(payload.shift)))
+                shifts => shifts.push(Immutable.fromJS(payload.shift)))
         case employeeActions.REMOVE_SHIFT_SUCCESS:
             return state.updateIn(
                 ['employees', state.get('employees').findIndex(employee => employee.get('id') == payload.employeeID), 'shifts'],

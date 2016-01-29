@@ -78,20 +78,16 @@ router.delete('/employees/:id', (req, res, next) => {
 })
 
 router.post('/employees/:id/shifts', (req, res, next) => {
-    employees.forEach(employee => {
-        if (employee.id == req.params.id) {
-            let data = {
-                id: req.params.id,
-                shift: {
-                    startTime: req.body.startTime,
-                    endTime: req.body.endTime,
-                    id: employee.nextShiftID++
-                }
-            }
-            employee.shifts.push(data.shift)
-            res.send(data)
-        }
-    })
+    let employee = employees.find(employee => employee.id == req.params.id)
+
+    let shift = {
+        startTime: req.body.startTime,
+        endTime: req.body.endTime,
+        id: employee.nextShiftID++
+    }
+
+    employee.shifts.push(shift)
+    res.send(shift)
 })
 
 router.delete('/employees/:employeeID/shifts/:shiftID', (req, res, next) => {
