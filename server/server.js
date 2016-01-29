@@ -59,20 +59,17 @@ router.get('/employees', (req, res, next) => {
 router.post('/employees', (req, res, next) => {
     let newEmp = {
         name: req.body.name,
-        id  : nextID++
+        id  : nextID++,
+        shifts: []
     }
     employees.push(newEmp)
     res.json(newEmp)
 })
 
 router.post('/employees/:id', (req, res, next) => {
-    employees.forEach(function update(employee) {
-        if (employee.id == req.params.id) {
-            employee.name = req.body.name
-            res.json(employee)
-        }
-    })
-
+    let employee = employees.find(e => e.id == req.params.id)
+    Object.assign(employee, req.body)
+    res.json(employee)
 })
 
 router.delete('/employees/:id', (req, res, next) => {

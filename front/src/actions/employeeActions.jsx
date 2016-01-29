@@ -43,11 +43,6 @@ export const newEmployeeNameChanged = (name) => ({
     payload: name
 })
 
-const deleteEmployeeSuccess = (employee) => ({
-    type: EMPLOYEE_DELETE_SUCCESS,
-    payload: employee
-})
-
 export const createNewEmployee = (name) =>
     dispatch => {
         fetch(EMPLOYEE_API.URL,
@@ -74,6 +69,11 @@ export const deleteEmployee = id =>
     dispatch =>
         axios.delete(`${EMPLOYEE_API.URL}/${id}`)
             .then(response => dispatch(deleteEmployeeSuccess(response.data)))
+
+const deleteEmployeeSuccess = (employee) => ({
+    type: EMPLOYEE_DELETE_SUCCESS,
+    payload: employee
+})
 
 export const addNewShift = (id, start, end) =>
     dispatch =>

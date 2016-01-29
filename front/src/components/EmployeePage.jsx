@@ -7,7 +7,6 @@ export default class EmployeePage extends Component {
 
     render() {
         const { newEmployeeName, employeeActions, modal } = this.props
-        let employeeEditModal = modal.get('isOpen') ? <EmployeeEditModal {...this.props}></EmployeeEditModal> : null;
 
         return (
             <div className="employeePage">
@@ -16,7 +15,7 @@ export default class EmployeePage extends Component {
                     <EmployeeList {...this.props}/>
                     <EmployeeAddForm name={newEmployeeName} actions={employeeActions} />
                 </section>
-                {employeeEditModal}
+                <EmployeeEditModal {...this.props} />
             </div>
         )
     }

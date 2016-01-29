@@ -15,7 +15,7 @@ class ShiftAddForm extends Component {
                     End time: <br />
                     <input type="text" {...endTime} />
                 </label> <br />
-                <button onClick={this.handleSubmit.bind(this)}>Submit</button>
+              <button type="submit">Submit</button>
             </form>
        )
     }
