@@ -9,10 +9,14 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "pm2": "^1.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.13.3",
     "cors": "^2.7.1",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "moment": "^2.11.1"
   }
 }

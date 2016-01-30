@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import EmployeeList from './EmployeeList'
 import EmployeeAddForm from './EmployeeAddForm'
-import Modal from './Modal'
+import EmployeeEditModal from './EmployeeEditModal'
 
 export default class EmployeePage extends Component {
 
     render() {
-        const { newEmployeeName, employeeActions} = this.props
-       
+        const { newEmployeeName, employeeActions, modal } = this.props
+
         return (
             <div className="employeePage">
                 <section id="employees">
@@ -15,9 +15,9 @@ export default class EmployeePage extends Component {
                     <EmployeeList {...this.props}/>
                     <EmployeeAddForm name={newEmployeeName} actions={employeeActions} />
                 </section>
-                <Modal {...this.props} />
+                <EmployeeEditModal {...this.props} />
             </div>
-            )
+        )
     }
 
     componentDidMount() {
