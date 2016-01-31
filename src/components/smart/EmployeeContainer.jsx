@@ -6,13 +6,13 @@ import * as employeeActions from '../../actions/employeeActions'
 import * as employeeModalActions from '../../actions/employeeModalActions'
 import EmployeePage from '../EmployeePage'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     employees: state.employees.get('employees'),
     newEmployeeName: state.employees.get('newEmployee'),
     modal: state.modal
 })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
     employeeActions: bindActionCreators(employeeActions, dispatch),
     employeeModalActions: bindActionCreators(employeeModalActions, dispatch)
 })

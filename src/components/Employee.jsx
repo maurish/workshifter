@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import ShiftAddForm from './ShiftAddForm'
 
 export default class Employee extends Component {
     render() {
-        const { employee, actions: {deleteEmployee, editEmployee, removeShift, addNewShift} } = this.props
+        const { employee, actions: {deleteEmployee, editEmployee} } = this.props
         const employeeID = employee.get('id')
         return(
-            <div className="singleEmployee">
+            <div className="single-employee">
                 <h2 className="name">
                     {employee.get('name')}
                 </h2>
@@ -18,12 +17,9 @@ export default class Employee extends Component {
                         {employee.get('shifts').map( (shift, i) => (
                             <li key={i}>
                                 {shift.get('startTime')} - {shift.get('endTime')}
-                                <button onClick={removeShift.bind(null, shift.get('id'), employeeID)}>Remove</button>
                             </li>
                         ))}
                     </ul>
-                    <h4>Add new shift</h4>
-                    <ShiftAddForm addNewShift={addNewShift} employeeId={employeeID} formKey={'addShift-' + employeeID} />
                 </section>
             </div>
         )
