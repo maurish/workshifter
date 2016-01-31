@@ -1,33 +1,27 @@
 'use strict'
 import React, { Component } from 'react'
+import { reduxForm } from 'redux-form'
 
-export default class EmployeeAddForm extends Component {
+class EmployeeAddForm extends Component {
     
     render() {
-        const { name } = this.props
+        const { fields: {name}, handleSubmit, actions } = this.props
         return(
             <div className="EmployeeAddForm">
                 <label>
                     Name 
                     <br />
-                    <input onChange={this.handleChange.bind(this)} type="text" value={name} />
+                    <input {...name} />
                 </label>
-                <button onClick={this.handleSubmit.bind(this)}>
+                <button onClick={handleSubmit(actions.createNewEmployee)}>
                     Submit
                 </button>
             </div>
         )
     }
-
-    handleChange(e) {
-        const { actions } = this.props
-        actions.newEmployeeNameChanged(e.target.value)
-    }
-
-    handleSubmit(e) {
-        const { name, actions } = this.props 
-        e.preventDefault()
-        actions.createNewEmployee(name)
-        return false
-    }
 }
+
+export default reduxForm({
+    form: 'EmployeeAddForm',
+    fields: ['name']
+})(EmployeeAddForm)

@@ -15,8 +15,6 @@ export default (state = defaultState, {type, payload}) => {
     switch (type) {
         case employeeActions.EMPLOYEE_EDIT:
             return state.set('employee', new Map(payload)).set('isOpen', true)
-        case employeeModalActions.MODAL_NAME_CHANGED:
-            return state.setIn(['employee', 'name'], payload)
         case employeeModalActions.MODAL_CLOSE:
             return state.set('isOpen', false)
         default:

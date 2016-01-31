@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import classnames from 'classnames'
+import moment from 'moment'
 
 class EmployeeEditModal extends Component {
 
@@ -9,7 +10,6 @@ class EmployeeEditModal extends Component {
         const employeeID  = modal.getIn(['employee', 'id'])
         const isOpen = modal.get('isOpen')
 
-        if (!isOpen) return false
         return (
             <section id="modal">
                 <div className={classnames('modal', {'modal-closed': !isOpen})}>
@@ -20,13 +20,17 @@ class EmployeeEditModal extends Component {
                         <label>Name<br />
                             <input  type="text" {...name} />
                         </label>
+                        <button type="submit">Muokkaa</button>
+                        <h4>Shifts</h4> 
                         {shifts.map((shift, i) =>
                             (<div key={i}>
                                 <input type="text" {...shift.startTime} /> -
                                 <input type="text" {...shift.endTime} />
+                                <button type="button" onClick={()=>{shifts.removeField(i)}}>Remove</button>
                             </div>)
                         )}
-                        <button type="submit">Muokkaa</button>
+                        <button type="button" onClick={() => {shifts.addField(this.newShiftValues())}}>Add new shift</button>
+
                     </form>
 
                 </div>
@@ -35,13 +39,22 @@ class EmployeeEditModal extends Component {
         )
     }
 
+    newShiftValues() {
+        const nextBusinessDay = moment().weekday(Math.max(moment().add(1, 'day').weekday(), 5)).startOf('day')
+        return {
+            startTime: nextBusinessDay.hours(8).format('DD.MM.YYYY HH:mm'),
+            endTime: nextBusinessDay.hours(16).format('DD.MM.YYYY HH:mm')
+        }
+    }
+
     componentDidMount() {
-        this.props.initializeForm(this.props.modal.get('employee').toJS())
+        const { initializeForm, modal } = this.props
+        initializeForm(modal.get('employee').toJS())
     }
 
 }
 
 export default reduxForm ({
     form: 'employeeEditModal',
-    fields: ['name', 'shifts[].startTime', 'shifts[].endTime', 'shifts[].id']
+    fields: ['name', 'shifts[].startTime', 'shifts[].endTime']
 })(EmployeeEditModal)

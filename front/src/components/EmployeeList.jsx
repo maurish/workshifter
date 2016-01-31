@@ -8,7 +8,7 @@ export default class EmployeeList extends Component {
         const { employees, employeeActions } = this.props
         return(
             <div className="employeeList">
-                <h2>Employees of the Month</h2>
+                <h3>Employees of the Month</h3>
                 <div>{employees.map((employee, i) =>
                     (<Employee employee={employee} key={i} actions={employeeActions}/>)
                 )}

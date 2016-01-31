@@ -15,7 +15,7 @@ export default class EmployeePage extends Component {
                     <EmployeeList {...this.props}/>
                     <EmployeeAddForm name={newEmployeeName} actions={employeeActions} />
                 </section>
-                <EmployeeEditModal {...this.props} />
+                { modal.get('isOpen') ? <EmployeeEditModal {...this.props} /> : null }
             </div>
         )
     }

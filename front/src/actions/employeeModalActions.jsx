@@ -1,22 +1,13 @@
-import axios from 'axios'
-
-import * as EMPLOYEE_API from '../constants'
+import { employeesDB } from '../firebase'
 
 export const MODAL_CLOSE                    = 'MODAL_CLOSE'
-export const MODAL_NAME_CHANGED             = 'MODAL_NAME_CHANGED'
 export const EMPLOYEE_UPDATE_SUCCESS        = 'EMPLOYEE_UPDATE_SUCCESS'
-
-export const changeModalValue = name => ({
-        type: MODAL_NAME_CHANGED,
-        payload: name
-})
 
 export const submitModal = (id, data) =>
     dispatch =>
-        axios.post(`${EMPLOYEE_API.URL}/${id}`, data)
-            .then(response => {
-                return dispatch(employeeUpdateSuccess(response.data))
-            })
+        employeesDB.child(id).update(data, () => {
+            dispatch(employeeUpdateSuccess(Object.assign(data, {id})))
+        })
 
 const employeeUpdateSuccess = data => (
     {
