@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import EmployeeContainer from './components/smart/EmployeeContainer'
 import store from './store'
-require('./index.less')
+import * as employeeActions from './actions/employeeActions'
+
+store.dispatch(employeeActions.fetchEmployees())
 
 const content = <EmployeeContainer />
 let rootElement = content

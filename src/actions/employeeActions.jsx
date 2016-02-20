@@ -4,7 +4,6 @@ export const ADD_EMPLOYEE               = 'ADD_EMPLOYEE'
 export const EMPLOYEE_DELETE_SUCCESS    = 'EMPLOYEE_DELETE_SUCCESS'
 export const EMPLOYEE_EDIT              = 'EMPLOYEE_EDIT'
 
-
 const addNewEmployee = employee => ({
     type: ADD_EMPLOYEE,
     payload: employee
@@ -16,9 +15,9 @@ export const fetchEmployees = () =>
             dispatch(addNewEmployee(Object.assign(data.val(), {id: data.key()})))    
         )
 
-export const createNewEmployee = name =>
-    dispatch => 
-        employeesDB.push({name}, () => dispatch(addNewEmployee({name})))
+export const createNewEmployee = name => {
+    employeesDB.push(name)
+}
     
 
 export const editEmployee = employee => ({

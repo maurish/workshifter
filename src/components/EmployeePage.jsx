@@ -19,9 +19,4 @@ export default class EmployeePage extends Component {
             </div>
         )
     }
-
-    componentDidMount() {
-        const { employeeActions: { fetchEmployees } } = this.props
-        fetchEmployees()
-    }
 }
