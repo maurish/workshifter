@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import classnames from 'classnames'
 import moment from 'moment'
+import styles from './employeeEditModal.less'
 
 class EmployeeEditModal extends Component {
 
@@ -12,15 +13,14 @@ class EmployeeEditModal extends Component {
 
         return (
             <section id="modal">
-                <div className={classnames('modal', {'modal-closed': !isOpen})}>
-                    <div className="modal-close-button" onClick={employeeModalActions.closeModal}>X</div>
+                <div className={classnames(styles.modal, {[styles['modal-closed']]: !isOpen})}>
+                    <div className={styles['modal-close-button']} onClick={employeeModalActions.closeModal}>X</div>
                     <h3>Edit employee</h3>
 
                     <form onSubmit={handleSubmit(employeeModalActions.submitModal.bind(null, employeeID))}>
                         <label>Name<br />
                             <input  type="text" {...name} />
                         </label>
-                        <button type="submit">Muokkaa</button>
                         <h4>Shifts</h4> 
                         {shifts.map((shift, i) =>
                             (<div key={i}>
@@ -30,11 +30,13 @@ class EmployeeEditModal extends Component {
                             </div>)
                         )}
                         <button type="button" onClick={() => {shifts.addField(this.newShiftValues())}}>Add new shift</button>
+                        <br />
+                        <button type="submit">Save changes</button>
 
                     </form>
 
                 </div>
-                <div className={classnames('modal-background', {'modal-closed': !isOpen})}></div>
+                <div className={classnames(styles['modal-background'], {[styles['modal-closed']]: !isOpen})}></div>
             </section>
         )
     }
