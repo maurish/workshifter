@@ -2,7 +2,7 @@ import path from 'path'
 import url from 'url'
 import express from 'express'
 import webpack from 'webpack'
-import proxy frpm 'express-http-proxy'
+import proxy from 'express-http-proxy'
 
 import config from './webpack.config'
 

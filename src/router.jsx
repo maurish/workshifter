@@ -1,13 +1,16 @@
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory, Redirect } from 'react-router'
-import LoginPage from './components/LoginPage'
-import EmployeePage from './components/LoginPage'
+import store from './store'
+import LoginPage from './components/smart/LoginPageContainer'
+import EmployeePage from './components/smart/EmployeeContainer'
 
 const requireLogin = (nextState, replaceState) => {
-    replaceState({
-        pathname: '/login',
-        state: { next: nextState.location.pathname}
-    })
+    if (!store.getState().user.get('loggedIn')) {
+        replaceState({
+            pathname: '/login',
+            state: { next: nextState.location.pathname}
+        })
+    }
 }
 
 
@@ -22,4 +25,5 @@ const router = (
     </Router>
 )
 
+export const history = hashHistory
 export default router
