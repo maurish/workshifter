@@ -4,16 +4,16 @@ import { Provider } from 'react-redux'
 import EmployeeContainer from './components/smart/EmployeeContainer'
 import store from './store'
 import * as employeeActions from './actions/employeeActions'
+import router from './router'
 
 store.dispatch(employeeActions.fetchEmployees())
 
-const content = <EmployeeContainer />
-let rootElement = content
+let rootElement = router
 if (__DEVELOPMENT__ && __DEVTOOLS__) {
     const DevTool = require('./DevTools')
     rootElement = (
         <div>
-            {content}
+            {router}
             <DevTool />
         </div>
     )
